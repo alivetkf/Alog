@@ -83,3 +83,4 @@
 >```git branch -d name```删除一个已合并分支
 >```git branch -D name```删除分支
 >```git tag name```提交打标签
+>```git pull origin branch-name --allow-unrelated-histories```
