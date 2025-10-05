@@ -44,3 +44,7 @@ track files `git add .\filename`
 关联远程仓库 `git remote add orgin(name) url`
 `git branch -M main`
 `git push -u orgin(name) main`
+>关于链接不上
+可以直接取消代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy
