@@ -57,7 +57,8 @@ void experiment(int n,int t){
 
     cout<<"财富矩阵(贫穷到富有): "<<endl;
     for(int i=0;i<n;++i){
-        cout<<static_cast<int>(wealth[i])<<" ";
+        //cout<<static_cast<int>(wealth[i])<<" ";
+        cout << right << setw(5) << static_cast<int>(wealth[i]);
         if(i%10==9) cout<<endl;
     }
     cout<<endl;
