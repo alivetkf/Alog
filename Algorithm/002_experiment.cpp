@@ -12,6 +12,8 @@
 #include <iomanip>
 #include <ctime>
 #include <chrono>//高精度时钟
+#include <fstream>
+#include <string>
 
 using namespace std;
 
@@ -27,6 +29,16 @@ double calculateGini(const vector<double>& wealth){
         }
     }
     return sumOfAbsoluteDifferences/(2.0*n*sumOfWealth);
+}
+
+//导出实验数据
+void exportAsCsv(const vector<double>& wealth, double gini) {
+    ofstream csv("result.csv");
+    csv << "rank,wealth,gini\n";
+    for (int i = 0; i < wealth.size(); ++i)
+        csv << i + 1 << ',' << static_cast<int>(wealth[i])
+        << ',' << (i == 0 ? to_string(gini) : string("")) << '\n';
+    csv.close();
 }
 
 //实验模拟 n人t轮
@@ -66,6 +78,9 @@ void experiment(int n,int t){
 
     cout<<fixed<<setprecision(6);
     cout<<"这个社会的基尼系数为: "<<calculateGini(wealth)<<endl;
+
+    exportAsCsv(wealth, calculateGini(wealth));
+
 }
 int main(){
     srand(static_cast<unsigned>(time(nullptr)));//给随机数发生器播一粒当前时间的种子，
@@ -95,6 +110,6 @@ int main(){
     
     cout << "计算耗时: " << ms << " ms\n";          
     cout << "测试结束" << endl;
-
+    cout<<"实验结果已导入.csv"<<endl;
     return 0;
 }
