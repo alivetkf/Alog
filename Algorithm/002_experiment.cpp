@@ -11,6 +11,7 @@
 #include <cmath>
 #include <iomanip>
 #include <ctime>
+#include <chrono>//高精度时钟
 
 using namespace std;
 
@@ -85,8 +86,14 @@ int main(){
     cout << "人数 : " << n << endl;
     cout << "轮数 : " << t << endl;
 
+    auto start = chrono::steady_clock::now();
+    
     experiment(n, t);
-
+   
+    auto end = chrono::steady_clock::now();
+    auto ms =chrono::duration<double, milli>(end - start).count();
+    
+    cout << "计算耗时: " << ms << " ms\n";          
     cout << "测试结束" << endl;
 
     return 0;
